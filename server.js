@@ -15,9 +15,8 @@ const PASSWORD = process.env.DASHBOARD_PASSWORD || '1234';
 // ==========================================
 // 1. Database Setup (Render Ready)
 // ==========================================
-// ✅ ใช้ process.env.DB_PATH เพื่อรองรับ Persistent Disk บน Render (ถ้ามี)
-// ถ้าไม่มี จะใช้ไฟล์ sentinel.db ในโฟลเดอร์ปัจจุบัน
-const dbPath = process.env.DB_PATH || 'sentinel.db'; 
+// ✅ ใช้โฟลเดอร์ /tmp สำหรับ Render Free Tier เพื่อป้องกันปัญหา Permission Denied
+const dbPath = process.env.DB_PATH || '/tmp/sentinel.db'; 
 const db = new Database(dbPath);
 
 db.pragma('journal_mode = WAL');
